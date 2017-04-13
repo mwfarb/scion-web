@@ -1,6 +1,6 @@
 
 body {
-    padding-top: 0px;
+    padding-top: 50px;
 }
 
 div#refresh-btn-container {
@@ -107,3 +107,47 @@ text {
 select option[disabled]:first-child {
 	display: none;
 }
+
+
+
+
+/* TODO(mwfarb): https://github.com/netsec-ethz/scion-web/issues/62 */
+/*
+
+
+.no-gutters {
+  margin-right: 0;
+  margin-left: 0;
+
+  > .col,
+  > [class*="col-"] {
+    padding-right: 0;
+    padding-left: 0;
+  }
+}
+
+
+input[type=text]{
+   padding-top:0px; 
+   padding-bottom:0px;
+   margin-bottom:0px; 
+   margin-top:0px; 
+   height:24px;
+}
+
+*/
+
+body {
+    padding-top: 100px;
+}
+
+
+
+
+
+
+
+
+
+
+

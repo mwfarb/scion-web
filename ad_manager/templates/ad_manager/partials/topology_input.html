@@ -6,13 +6,13 @@
     Endhosts are not specified.
     <br/>
     <br/>
-    <form id="topologyForm" class="form-horizontal" method="POST" action="/as_manager/ads/generate_topology">
+    <form id="topologyForm" class="form-inline" method="POST" action="/as_manager/ads/generate_topology">
         {% csrf_token %}
             <div id="misc_fields" class="well">
             <b>AS mandatory fields:</b>
             <div class="control-group">
                 <br/>
-                <label class="control-label col-sm-2" for="inputIsCore">Is Core: </label>
+                <label for="inputIsCore">Is Core: </label>
                 <div class="controls">
                     <input class="hidden" id="inputIsCore" name="inputIsCore" type="hidden" value="false"
                            alt="get a value even for false checkbox"/>
@@ -25,14 +25,14 @@
             </div>
             <br/>
             <div class="form-group">
-                <label class="control-label col-sm-2" for="inputISD_AS">AS name: </label>
+                <label for="inputISD_AS">AS name: </label>
                 <div class="controls">
                     <input type="text" id="inputISD_AS" name="inputISD_AS" placeholder="{{ isd_id|add:'-'|add:as_id }}"
                            value="{{ isd_id }}-{{as_id }}" alt="readonly" readonly>
                 </div>
             </div>
             <div class="control-group">
-                <label class="control-label col-sm-2" for="inputOverlay">Overlay: </label>
+                <label for="inputOverlay">Overlay: </label>
                 <div class="controls">
                     <select id="inputOverlay" name="inputOverlay" required>
                         <option value="IP" onclick="$('#inputMTU').attr('placeholder', '1480');" selected>IP</option>
@@ -40,7 +40,7 @@
                         <option value="LS" onclick="$('#inputMTU').attr('placeholder', '1492');">Label switching</option>
                     </select>
                 </div>
-                <label class="control-label col-sm-2" for="inputMTU">MTU: </label>
+                <label for="inputMTU">MTU: </label>
                 <div class="controls">
                     <input type="text" id="inputMTU" name="inputMTU" placeholder="1472">
                 </div>
@@ -65,17 +65,12 @@
 
                             <input class="hidden" type="text" id="input{{ type }}ServerType" name="input{{ type }}ServerType" title="server type"
                                    value="{{ type|lower }}_server">
-                            <label class="control-label col-sm-2 server-name-label" for="input{{ type }}ServerName">Server name: </label>
-                            <div class="form-group">
-                                <div class="controls">
-                                    <input class="server-name-input" type="text" id="input{{ type }}ServerName" name="input{{ type }}ServerName"
-                                           value="{{ type|lower|slice:":1" }}s{{ isd_id }}-{{ as_id }}-1">
-                                </div>
-                            </div>
-
-                            <label class="control-label col-sm-2 server-address-label" for="input{{ type }}ServerAddress">Address &
-                                port: </label>
                             <div class="controls">
+                                <label class="server-name-label" for="input{{ type }}ServerName">Server name: </label>
+                                <input class="server-name-input" type="text" id="input{{ type }}ServerName" name="input{{ type }}ServerName"
+                                       value="{{ type|lower|slice:":1" }}s{{ isd_id }}-{{ as_id }}-1">
+                                <label class="server-address-label" for="input{{ type }}ServerAddress">Address &
+                                    port: </label>
                                 <input class="server-address-input" type="text" id="input{{ type }}ServerAddress" name="input{{ type }}ServerAddress"
                                        placeholder="127.0.0.{{ forloop.counter0|add:49 }}" value=""> :
                                 <input class="server-port-input inputPort" id="input{{ type }}ServerPort" name="input{{ type }}ServerPort"
@@ -102,22 +97,18 @@
                 <br/>
                 <div class="routerItem item" id="routerItem-1">
                     <div class="form-group">
-                        <label class="control-label col-sm-2 server-name-label" for="inputBorderRouterName">Server name: </label>
+                        <label class="server-name-label" for="inputBorderRouterName">Server name: </label>
                         <div class="controls">
                             <input class="server-name-input" type="text" id="inputBorderRouterName" name="inputBorderRouterName" value="br{{ isd_id }}-{{ as_id }}-1" placeholder="br{{ isd_id }}-{{ as_id }}-1">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2 server-address-label" for="inputBorderRouterAddress">Address & port: </label>
+                        <label class="server-address-label" for="inputBorderRouterAddress">Address & port: </label>
                         <div class="controls">
                             <input class="server-address-input" type="text" id="inputBorderRouterAddress" name="inputBorderRouterAddress"
                                    placeholder="127.0.0.52/29"> :
                             <input class="server-port-input inputPort" id="inputBorderRouterPort" name="inputBorderRouterPort"
                                placeholder="2048" type="text">
-                            <button id="addBorderRouterButton" class="btn btn-success btn-add pull-right" type="button"
-                                    onclick="toggleInput(this);">
-                                <span class="glyphicon glyphicon-plus"></span>
-                            </button>
                         </div>
                     </div>
                     <br/>
@@ -125,7 +116,7 @@
                         <b>Interface parameters:</b>
                         <br/><br/>
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="inputInterfaceAddr">Interface address: </label>
+                            <label for="inputInterfaceAddr">Interface address: </label>
                             <div class="controls">
                                 <input type="text" id="inputInterfaceAddr" name="inputInterfaceAddr"
                                        placeholder="127.0.0.4/31">
@@ -133,7 +124,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="inputInterfaceBandwidth">Interface
+                            <label for="inputInterfaceBandwidth">Interface
                                 bandwidth: </label>
                             <div class="controls">
                                 <input type="text" id="inputInterfaceBandwidth" name="inputInterfaceBandwidth"
@@ -142,14 +133,14 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="inputInterfaceIFID">Interface ID (IFID): </label>
+                            <label for="inputInterfaceIFID">Interface ID (IFID): </label>
                             <div class="controls">
                                 <input class="ifid-input" type="text" id="inputInterfaceIFID" name="inputInterfaceIFID" placeholder="1">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="inputInterfaceRemoteName">Name of the remote the link
+                            <label for="inputInterfaceRemoteName">Name of the remote the link
                                 connects: </label>
                             <div class="controls">
                                 <input type="text" id="inputInterfaceRemoteName" name="inputInterfaceRemoteName"
@@ -159,7 +150,7 @@
                         <br/>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="inputInterfaceType">Type of the link: </label>
+                            <label for="inputInterfaceType">Type of the link: </label>
                             <div class="controls">
                                 <select id="inputInterfaceType" name="inputInterfaceType" required>
                                     <option value="PARENT" selected>PARENT</option>
@@ -172,14 +163,14 @@
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="inputLinkMTU">MTU: </label>
+                            <label for="inputLinkMTU">MTU: </label>
                             <div class="controls">
                                 <input type="text" id="inputLinkMTU" name="inputLinkMTU" placeholder="1472">
                             </div>
                         </div>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="inputInterfaceRemoteAddress">Remote address the link
+                            <label for="inputInterfaceRemoteAddress">Remote address the link
                                 connects to: </label>
                             <div class="controls">
                                 <input type="text" id="inputInterfaceRemoteAddress" name="inputInterfaceRemoteAddress"
@@ -189,7 +180,7 @@
                         <br/>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="inputInterfaceRemotePort">Remote port the link
+                            <label for="inputInterfaceRemotePort">Remote port the link
                                 connects: </label>
                             <div class="controls">
                                 <input type="text" id="inputInterfaceRemotePort" name="inputInterfaceRemotePort"
@@ -199,13 +190,17 @@
                         <br/>
 
                         <div class="form-group">
-                            <label class="control-label col-sm-2" for="inputInterfaceOwnPort">Border router port from which
+                            <label for="inputInterfaceOwnPort">Border router port from which
                                 the link connects: </label>
                             <div class="controls">
                                 <input type="text" id="inputInterfaceOwnPort" name="inputInterfaceOwnPort"
                                        class="inputPort" placeholder="50000">
                             </div>
                         </div>
+                            <button id="addBorderRouterButton" class="btn btn-success btn-add pull-right" type="button"
+                                    onclick="toggleInput(this);">
+                                <span class="glyphicon glyphicon-plus"></span>
+                            </button>
                         <br/>
                     </div>
                 </div>
@@ -221,14 +216,14 @@
 
                     <input class="hidden" type="text" id="inputSibraServerType" name="inputSibraServerType" title="server type"
                            value="sibra_server">
-                    <label class="control-label col-sm-2 server-name-label" for="inputSibraServerName">Server name: </label>
+                    <label class="server-name-label" for="inputSibraServerName">Server name: </label>
                     <div class="form-group">
                         <div class="controls">
                             <input class="server-name-input" type="text" id="inputSibraServerName" name="inputSibraServerName" value="sb{{ isd_id }}-{{ as_id }}-1">
                         </div>
                     </div>
 
-                    <label class="control-label col-sm-2 server-address-label" for="inputSibraServerAddress">Address & port: </label>
+                    <label class="server-address-label" for="inputSibraServerAddress">Address & port: </label>
                     <div class="controls">
                         <input class="server-address-input" type="text" id="inputSibraServerAddress" name="inputSibraServerAddress"
                                placeholder="127.0.0.54"> :
@@ -256,7 +251,7 @@
 
                     <input class="hidden" type="text" id="inputZookeeperServerType" name="inputZookeeperServerType" title="server type"
                            value="zookeeper_server">
-                    <label class="control-label col-sm-2 server-name-label" for="inputZookeeperServerName">Server name: </label>
+                    <label class="server-name-label" for="inputZookeeperServerName">Server name: </label>
                     <div class="form-group">
                         <div class="controls">
                             <input class="server-name-input" type="text" id="inputZookeeperServerName" name="inputZookeeperServerName"
@@ -264,7 +259,7 @@
                         </div>
                     </div>
 
-                    <label class="control-label col-sm-2 server-address-label" for="inputZookeeperServerAddress">Address: </label>
+                    <label class="server-address-label" for="inputZookeeperServerAddress">Address: </label>
                     <div class="controls">
                         <input class="server-address-input" type="text" id="inputZookeeperServerAddress" name="inputZookeeperServerAddress"
                                placeholder="127.0.0.1">
@@ -273,7 +268,7 @@
                             <span class="glyphicon glyphicon-plus"></span>
                         </button>
                     </div>
-                    <label class="control-label col-sm-2 server-port-label" for="inputZookeeperServerPort">Zookeeper port: </label>
+                    <label class="server-port-label" for="inputZookeeperServerPort">Zookeeper port: </label>
                     <div class="controls">
                         <input class="server-port-input inputPort" type="text" id="inputZookeeperServerPort" name="inputZookeeperServerPort"
                                placeholder="2181">
@@ -293,7 +288,7 @@
             <button id="updateIPListButton" type="button" onclick="gatherIPsforCloudEngines();">Update IP address list</button>
             <div class="controls hidden cloudEngineItemModel">
                 <br/>
-                <label class="control-label col-sm-2 server-cloud-address-label" for="inputCloudAddress">IP address: </label>
+                <label class="server-cloud-address-label" for="inputCloudAddress">IP address: </label>
                 <input class="server-cloud-address-input" type="text" id="inputCloudAddress" name="inputCloudAddress"
                        value="123" readonly>
                 <label class="control-label server-hostname-label" for="inputHostname">Hostname: </label>
